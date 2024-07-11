@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2024 at 11:01 AM
+-- Generation Time: Jul 11, 2024 at 10:19 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -48,28 +48,78 @@ CREATE TABLE `cache_locks` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `dabouts`
+--
+
+CREATE TABLE `dabouts` (
+  `id` int(11) NOT NULL,
+  `lahir` date NOT NULL,
+  `tempat_lahir` varchar(30) NOT NULL,
+  `umur` varchar(15) NOT NULL,
+  `agama` varchar(20) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `alamat` varchar(200) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `dabouts`
+--
+
+INSERT INTO `dabouts` (`id`, `lahir`, `tempat_lahir`, `umur`, `agama`, `gender`, `phone`, `alamat`, `email`, `created_at`, `updated_at`) VALUES
+(3, '2002-07-13', 'Jakarta', '21 Tahun', 'Islam', 'Laki - Laki', '0891234567890', 'Kel. Petamburan Kec. Tanah Abang', 'admin@mail.com', '2024-06-10 08:54:14', '2024-06-11 05:43:49');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `daducations`
+--
+
+CREATE TABLE `daducations` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `kejuruan` varchar(100) NOT NULL,
+  `masuk` date NOT NULL,
+  `kelulusan` date NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `daducations`
+--
+
+INSERT INTO `daducations` (`id`, `nama`, `kejuruan`, `masuk`, `kelulusan`, `created_at`, `updated_at`) VALUES
+(4, 'SMK AL-MAFATIH', 'ADMINISTRASI PERKANTORAN', '2018-01-25', '2021-07-21', '2024-06-11 00:36:22', '2024-06-11 00:36:22'),
+(5, 'PPKD JP', 'WEB PROGRAMMING', '2024-04-29', '2024-07-12', '2024-06-11 00:48:45', '2024-06-11 00:48:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `experiences`
 --
 
 CREATE TABLE `experiences` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `job_title` varchar(255) NOT NULL,
-  `company_name` varchar(255) NOT NULL,
-  `job_description` text NOT NULL,
-  `date_start` date NOT NULL,
-  `date_finish` date NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `job_title` varchar(100) NOT NULL,
+  `company_name` varchar(255) DEFAULT NULL,
+  `job_description` varchar(500) NOT NULL,
+  `date_start` date DEFAULT NULL,
+  `date_finish` date DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `experiences`
 --
 
 INSERT INTO `experiences` (`id`, `job_title`, `company_name`, `job_description`, `date_start`, `date_finish`, `created_at`, `updated_at`) VALUES
-(1, 'Pengusaha123', 'PT AABC', 'Pengusaha', '2024-05-30', '2024-06-30', '2024-05-29 23:22:56', '2024-05-29 23:25:59'),
-(4, 'asas', 'asas', 'asas', '2024-05-30', '2024-05-31', '2024-05-30 00:07:13', '2024-05-30 00:07:13'),
-(5, 'Bisnisman', 'PT ACC', 'Bisnisman', '2024-04-01', '2024-06-01', '2024-05-30 23:05:29', '2024-05-30 23:05:29');
+(3, 'Crew Store', 'PT. INDOMARCO PRISMATAMA', 'Membantu pelanggan dengan menjawab pertanyaan terkait produk, membantu perbandingan produk, dan membantu menemukan produk yang dicari konsumen. Mereka juga membantu dalam penyetokan ulang serta menjaga kebersihan dan pengorganisasian toko saat mereka tidak membantu pelanggan.', '2022-07-29', '2023-07-31', '2024-05-29 23:02:02', '2024-06-10 07:24:08'),
+(4, 'Praktik Kerja Lapangan', 'SETJEN DPR RI', 'Bagian Evaluasi Diklat setjen dan BK DPR RI\r\nPengarsipan Data - data Pegawai perjalanan dinas DPR RI', '2020-01-02', '2020-03-31', '2024-06-10 07:28:58', '2024-06-11 03:47:55');
 
 -- --------------------------------------------------------
 
@@ -142,9 +192,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '0001_01_01_000000_create_users_table', 1),
 (2, '0001_01_01_000001_create_cache_table', 1),
 (3, '0001_01_01_000002_create_jobs_table', 1),
-(4, '2024_05_22_034210_create_personal_access_tokens_table', 2),
-(5, '2024_05_27_014724_create_profiles_table', 3),
-(6, '2024_05_30_021229_create_experiences_table', 4);
+(4, '2024_05_27_014706_create_profiles_table', 2),
+(5, '2024_05_22_034210_create_personal_access_tokens_table', 3);
 
 -- --------------------------------------------------------
 
@@ -185,9 +234,9 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `profiles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `phone` varchar(13) NOT NULL,
+  `phone` varchar(15) NOT NULL,
   `address` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `github_link` varchar(255) DEFAULT NULL,
@@ -203,7 +252,7 @@ CREATE TABLE `profiles` (
 --
 
 INSERT INTO `profiles` (`id`, `name`, `email`, `phone`, `address`, `description`, `github_link`, `linkedin_link`, `twitter_link`, `facebook_link`, `created_at`, `updated_at`) VALUES
-(1, 'Muhammad Reza Ibrahim 123', 'ribrahim50@gmail.com', '08994212291', 'Kota Bekasi, Jawa Barat', 'Saya berpengalaman menggunakan framework Laravel sebagai teknologi pengembangan sistem informasi.', 'https://github.com/sessions/verified-device', NULL, NULL, 'https://www.facebook.com/?locale=id_ID', '2024-05-28 23:34:01', '2024-05-29 18:47:02');
+(14, 'ADE RIANDI', 'aderiandi@mail.com', '6289502044217', 'JL. PETAMBURAN KEL. PETAMBURAN KEC. TANAH ABANG', 'JUNIOR WEB PROGRAMMING', 'https://github.com/ADERIANDI/ADERIANDI', 'https://www.linkedin.com/', 'https://x.com/?lang=en', 'https://id-id.facebook.com/', '2024-05-29 19:07:01', '2024-05-29 23:30:26');
 
 -- --------------------------------------------------------
 
@@ -225,10 +274,11 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('CL2tnGyFSAByTreCPvICi3ppb6pIi1skimID4MVW', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWUN5NkxLTW1iUzFQNDVQbHpoOEtLOXZHRmgyOUdqeEdpeW16U0MxcSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1717116415),
-('H3XCdQcdxGaDbhjDI9O3zuYKDhFyndBvDwNWZ61b', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiUENSZDd6aERFMEtkTFROM1VneWtPQXlBV1VKT2VYRDdubEdaRk1sRiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMCI7fXM6NToiYWxlcnQiO2E6MDp7fX0=', 1717056118),
-('hdfkExDXDyWy5ZF79AZ318EUDpwHIkLHSmtrUBW8', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibEpEQUd6MmQzdDJSNXgzcDF5cGR2MDBZWFlkQVYyamlwUTUwdzFMaSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzg6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9leHBlcmllbmNlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MTg6e2k6MDtzOjE4OiJhbGVydC5kZWxldGUudGl0bGUiO2k6MTtzOjE3OiJhbGVydC5kZWxldGUudGV4dCI7aToyO3M6MjM6ImFsZXJ0LmRlbGV0ZS5iYWNrZ3JvdW5kIjtpOjM7czoxODoiYWxlcnQuZGVsZXRlLndpZHRoIjtpOjQ7czoyMzoiYWxlcnQuZGVsZXRlLmhlaWdodEF1dG8iO2k6NTtzOjIwOiJhbGVydC5kZWxldGUucGFkZGluZyI7aTo2O3M6Mjg6ImFsZXJ0LmRlbGV0ZS5zaG93Q2xvc2VCdXR0b24iO2k6NztzOjMwOiJhbGVydC5kZWxldGUuY29uZmlybUJ1dHRvblRleHQiO2k6ODtzOjI5OiJhbGVydC5kZWxldGUuY2FuY2VsQnV0dG9uVGV4dCI7aTo5O3M6Mjk6ImFsZXJ0LmRlbGV0ZS50aW1lclByb2dyZXNzQmFyIjtpOjEwO3M6MjQ6ImFsZXJ0LmRlbGV0ZS5jdXN0b21DbGFzcyI7aToxMTtzOjI5OiJhbGVydC5kZWxldGUuc2hvd0NhbmNlbEJ1dHRvbiI7aToxMjtzOjMxOiJhbGVydC5kZWxldGUuY29uZmlybUJ1dHRvbkNvbG9yIjtpOjEzO3M6MTc6ImFsZXJ0LmRlbGV0ZS5pY29uIjtpOjE0O3M6MzI6ImFsZXJ0LmRlbGV0ZS5zaG93TG9hZGVyT25Db25maXJtIjtpOjE1O3M6Mjc6ImFsZXJ0LmRlbGV0ZS5hbGxvd0VzY2FwZUtleSI7aToxNjtzOjMwOiJhbGVydC5kZWxldGUuYWxsb3dPdXRzaWRlQ2xpY2siO2k6MTc7czoxMjoiYWxlcnQuZGVsZXRlIjt9czozOiJuZXciO2E6MDp7fX1zOjU6ImFsZXJ0IjthOjA6e319', 1717136590),
-('w1FQpWYDS9B3UNBdz1MMWDg4jThUmgCVQJE2X0dA', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVDNIVjNUaUtXRXlMZkJ0cWFhNDZwYndDODdtSVpSSmpCMXpUODU4bCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1717133789);
+('5JZaSAnsfr2GnAeRolBk9YJp16XdaMduCMGwBNYt', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVmRsQWkxT1pYZUhleEFyRjZGTk13alBjU1F4eXpJQ3p1cktiRUdXSiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwNi9hZG1pbiI7fX0=', 1719479978),
+('a5E90CO5tqGaSNsgoguExwd03rVWDXvEHhCg7Bkj', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYzZxUXp4bk5JN01FeWRESk5VdXpPVHF2MDltWVFaZERqdFFtNnp2MyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMi9hZG1pbiI7fX0=', 1719368716),
+('oAB73iEPHpZPLZu1Ihw34cjznEu5ytJ6zSnxOcMy', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiZVpJandaeDJJOXJleHFaOVBhN3JFV1RtaXpmd0JESGxxaWJ2Uk1iNyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMi9hZG1pbiI7fX0=', 1719368212),
+('oVL2HEIcXTMMEPQ9bpq7HGCGC39FsS5mCXbkYnK4', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQnB4SGc0Y2JsWG9LckZNdVNUQ2dqUktTd2ZiQk5sNGsxaktBYjdMbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mzc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo1O30=', 1718871075),
+('pseIYiaWLTiklsV5VqKMZwbJ1Rn40El1O0YQb0qZ', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMEs2V3lLSDdiNlVjaVp6bGl4dFhPSUpZMUpXRWdnRGZZeGFaT0ladyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwNC9hZG1pbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjU7fQ==', 1718953293);
 
 -- --------------------------------------------------------
 
@@ -248,7 +298,35 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `profile_picture`, `created_at`, `updated_at`) VALUES
-(2, '1717055477_bouquet2.jpg', '2024-05-30 00:51:17', '2024-05-30 00:51:17');
+(1, '1717056214_picture.jpg', '2024-05-30 01:03:34', '2024-05-30 01:03:34'),
+(2, '1717056756_1.jpg', '2024-05-30 01:12:36', '2024-05-30 01:12:36'),
+(3, '1717057078_1.jpg', '2024-05-30 01:17:58', '2024-05-30 01:17:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `skills`
+--
+
+CREATE TABLE `skills` (
+  `id` int(11) NOT NULL,
+  `nama_skill` varchar(50) NOT NULL,
+  `level_skill` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `skills`
+--
+
+INSERT INTO `skills` (`id`, `nama_skill`, `level_skill`, `created_at`, `updated_at`) VALUES
+(1, 'HTML', '50%', '2024-06-11 04:15:24', '2024-06-11 06:25:50'),
+(2, 'LARAVEL', '35%', '2024-06-11 04:15:41', '2024-06-11 06:26:52'),
+(3, 'MICROSOFT', '75%', '2024-06-11 04:16:07', '2024-06-11 06:26:52'),
+(4, 'PHP', '50%', '2024-06-11 04:16:44', '2024-06-11 06:26:52'),
+(5, 'MYSQL', '50%', '2024-06-11 04:18:06', '2024-06-11 06:26:07'),
+(6, 'CSS', '45%', '2024-06-11 04:24:18', '2024-06-11 06:26:52');
 
 -- --------------------------------------------------------
 
@@ -268,6 +346,17 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(5, 'Administrator', 'admin@mail.com', NULL, '$2y$12$GkDeOpvEiiSROqnDtnkIWuoy9VVbmfX7wmZTdDYwxkPdNNibhbL3u', NULL, '2024-05-26 20:34:23', '2024-06-02 23:37:58'),
+(6, 'Unjani Septi Susanti S.Psi', 'mandasari.elisa@prastuti.desa.id', NULL, '$2y$12$YbodDpE/XF8MKT5gj6UKouC7WeRrNCzmPy33XRtPokPG4mNQi/MNi', NULL, '2024-05-26 20:34:23', '2024-05-26 20:34:23'),
+(7, 'Jamil Sihombing S.I.Kom', 'kuswandari.bagiya@gmail.co.id', NULL, '$2y$12$vLxqPXs7O6PaXxtLqRX5OOUETayo2mXy0p34.61lCtHYxtFI/Po2q', NULL, '2024-05-26 20:34:24', '2024-05-26 20:34:24'),
+(8, 'Hartaka Widodo', 'bahuwirya28@yahoo.co.id', NULL, '$2y$12$nmMauWTH5JaD07bg9sHKseS/6NKLjnT5MG714m8HIiiAg38bNqKb2', NULL, '2024-05-26 20:34:24', '2024-05-26 20:34:24'),
+(9, 'Qori Pudjiastuti', 'warta.sihombing@gmail.com', NULL, '$2y$12$kzPkmJDi6aUmYvUT6CRPJ.Ff4B2rwthb72TTkBfv8HZmhAF4OCCru', NULL, '2024-05-26 20:34:24', '2024-05-26 20:34:24');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -282,6 +371,18 @@ ALTER TABLE `cache`
 --
 ALTER TABLE `cache_locks`
   ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `dabouts`
+--
+ALTER TABLE `dabouts`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `daducations`
+--
+ALTER TABLE `daducations`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `experiences`
@@ -350,6 +451,12 @@ ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `skills`
+--
+ALTER TABLE `skills`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -361,10 +468,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `dabouts`
+--
+ALTER TABLE `dabouts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `daducations`
+--
+ALTER TABLE `daducations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `experiences`
 --
 ALTER TABLE `experiences`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -382,7 +501,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -394,19 +513,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `profiles`
 --
 ALTER TABLE `profiles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `skills`
+--
+ALTER TABLE `skills`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
